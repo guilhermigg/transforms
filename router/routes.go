@@ -7,6 +7,8 @@ import (
 )
 
 func initializeRoutes(router *gin.Engine) {
+	handler.InitializeHandlers()
+
 	v1 := router.Group("/api/v1")
 	{
 		// User endpoints
