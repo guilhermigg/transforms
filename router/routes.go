@@ -1,7 +1,7 @@
 package router
 
 import (
-	"net/http"
+	handler "transforms/handlers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,10 +9,10 @@ import (
 func initializeRoutes(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/users", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "GET users",
-			})
-		})
+		// User endpoints
+		v1.GET("/user/:id", handler.GetUserHandler)
+		v1.POST("/user", handler.CreateUserHandler)
+		v1.PATCH("/user/:id", handler.UpdateUserHandler)
+		v1.DELETE("/user/:id", handler.DeleteUserHandler)
 	}
 }
