@@ -39,8 +39,6 @@ func LoginUserHandler(ctx *gin.Context) {
 		Password: request.Password,
 	}
 
-	fmt.Println(loginData.Email)
-
 	if err := db.Where("email = ?", loginData.Email).First(&user).Error; err != nil {
 		logger.Error("user not found: %+v", err.Error())
 		sendError(ctx, "login invalid", http.StatusBadRequest)
