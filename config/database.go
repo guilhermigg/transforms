@@ -29,6 +29,7 @@ func InitializeDatabase() (*gorm.DB, error) {
 	}
 
 	err = db.AutoMigrate(&schemas.Form{})
+	err = db.AutoMigrate(&schemas.User{})
 
 	if err != nil {
 		logger.Error("automigrate error: %s", err)
