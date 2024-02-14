@@ -39,3 +39,20 @@ func isValidEmail(email string) bool {
 	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
 	return emailRegex.MatchString(email)
 }
+
+type LoginUserRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+func (r *LoginUserRequest) Validate() error {
+	if r.Email == "" {
+		return paramIsRequiredError("Email", "string")
+	}
+
+	if r.Password == "" {
+		return paramIsRequiredError("Password", "string")
+	}
+
+	return nil
+}
