@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"transforms/schemas"
 
@@ -20,7 +21,7 @@ func InitializeDatabase() (*gorm.DB, error) {
 	db_name := os.Getenv("DB_NAME")
 	db_port := os.Getenv("DB_PORT")
 
-	dsn := "host=" + db_host + " user=" + db_user + " password=" + db_password + " dbname=" + db_name + " port=" + db_port + " sslmode=disable TimeZone=America/Sao_Paulo"
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=America/Sao_Paulo", db_host, db_user, db_password, db_name, db_port)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
