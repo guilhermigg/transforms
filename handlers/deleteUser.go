@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"transforms/schemas"
@@ -20,7 +19,6 @@ func DeleteUserHandler(ctx *gin.Context) {
 	}
 
 	user.ID = uint(userId)
-	fmt.Println(user)
 
 	if err := db.Delete(&user).Error; err != nil {
 		sendError(ctx, "could not delete this user", http.StatusBadRequest)
