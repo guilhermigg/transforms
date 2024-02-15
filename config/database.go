@@ -12,7 +12,7 @@ import (
 func InitializeDatabase() (*gorm.DB, error) {
 	logger := GetLogger("Database")
 
-	godotenv.Load(".env")
+	godotenv.Load("development.env")
 
 	db_host := os.Getenv("DB_HOST")
 	db_user := os.Getenv("DB_USER")
