@@ -13,7 +13,13 @@ import (
 func InitializeDatabase() (*gorm.DB, error) {
 	logger := GetLogger("Database")
 
-	godotenv.Load("development.env")
+	gin_mode := os.Getenv("GIN_MODE")
+
+	if gin_mode == "release" {
+		godotenv.Load("production.env")
+	} else {
+		godotenv.Load("development.env")
+	}
 
 	db_host := os.Getenv("DB_HOST")
 	db_user := os.Getenv("DB_USER")
